@@ -46,5 +46,9 @@ Rules = 默认规则
 
 ## 贡献与反馈
 如果你对该程序有任何改进建议或发现了问题，欢迎提交issue或pull request。
+<<<<<<< HEAD
 
 谢谢
+=======
+谢谢。谢谢。
+>>>>>>> 33ad03fde3fbc6fb4b07f4ca5ea7feb568afd1d2
