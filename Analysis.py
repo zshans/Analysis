@@ -4,6 +4,9 @@ import threading
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import configparser
+from qwen2_5api import analyze_image_with_qwen2_5
+from deepseekapi import analyze_image_with_deepseek
+from kimiapi import analyze_image_with_kimi
 
 def read_config(file_path):
     """
@@ -40,10 +43,11 @@ def analyze_image(image_path, config):
     prompt = config['Analysis'].get('Prompt', '默认提示词')
     # 从配置对象中获取分析规则，如果不存在则使用默认规则
     rules = config['Analysis'].get('Rules', '默认规则')
-    # 获取当前时间并格式化
-    current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-    # 构建分析结果字符串，包含时间
-    analysis_result = f"{current_time} - 分析使用提示词：{prompt} 和规则：{rules}"
+    # 调用 qwen2_5api 中的 analyze_image_with_qwen2_5 函数进行分析
+    analysis_result = analyze_image_with_qwen2_5(image_path, prompt, rules)
+    #analysis_result = analyze_image_with_deepseek(image_path, prompt, rules)
+    #analysis_result = analyze_image_with_kimi(image_path, prompt, rules)
+
     return analysis_result
 
 log_lock = threading.Lock()
